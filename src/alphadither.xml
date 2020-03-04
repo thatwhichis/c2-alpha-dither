@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<c2effect>
+  <!-- About -->
+  <id>alphadither</id>
+  <!-- Never change the ID.  Change the name instead -->
+  <name>Alpha dither</name>
+  <category>Color</category>
+  <description>Simulates alpha channel transparency using dithering.</description>
+  <author>thatwhichis</author>
+
+  <!-- Settings -->
+
+  <!-- Extend the bounding box for effect processing by a number of pixels to show the edges
+		 of effects which go beyond the object edges, e.g. blur and warp. -->
+  <extend-box-horizontal>0</extend-box-horizontal>
+  <extend-box-vertical>0</extend-box-vertical>
+
+  <!-- Set to true if the background is sampled (samplerBack is referenced at all in the shader) -->
+  <blends-background>false</blends-background>
+
+  <!-- Set to true if the background is not sampled at 1:1 with the foreground (e.g. the
+		 background texture co-ordinates are modified in some way by the shader, as done
+		 by Glass and Lens) -->
+  <cross-sampling>false</cross-sampling>
+
+  <!-- Set to true if the shader does not modify the opaque areas of the foreground. In other words
+		 any opaque pixels in the original image are output in the same position and still fully opaque.
+		 This is used to optimise the front-to-back renderer's depth pass, since it can still write depth
+		 and skip overdraw for any objects using only shaders which preserve opaqueness. -->
+  <preserves-opaqueness>false</preserves-opaqueness>
+
+  <!-- Set to true if the effect changes over time, e.g. Noise or Warp effects. -->
+  <animated>true</animated>
+
+  <!-- Parameters -->
+  <parameters>
+    <param>
+      <name>Dither</name>
+      <description>Dither transparency of object. 0 - 100.</description>
+      <type>percent</type>
+      <initial>0.5</initial>
+      <uniform>f_dither</uniform>
+    </param>
+  <param>
+      <name>Sample Alpha</name>
+      <description>Sample object alpha for dither. 0 = disabled.</description>
+      <type>float</type>
+      <initial>1.0</initial>
+      <uniform>f_sample</uniform>
+    </param>    
+    <param>
+      <name>Pixel Size</name>
+      <description>Indiciates sprite pixel scale.</description>
+      <type>percent</type>
+      <initial>0.04</initial>
+      <uniform>f_scale</uniform>
+    </param> 
+  </parameters>
+
+</c2effect>
